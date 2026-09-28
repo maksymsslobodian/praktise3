@@ -1,0 +1,83 @@
+import random
+
+
+# 1. Метод генерації масиву
+def generate_array(length, min_value, max_value):
+    return [random.randint(min_value, max_value) for _ in range(length)]
+
+# 2. Метод виводу масиву у потрібному форматі
+def print_array(array):
+    formatted_elements = [
+        f"[cell - {i},value - {val}]" for i, val in enumerate(array)
+    ]
+    result = "{" + ",".join(formatted_elements) + "}"
+    print(result)
+
+# 3. Bubble Sort (Сортування бульбашкою)
+def bubble_sort(array, ascending=True):
+    n = len(array)
+    for i in range(n - 1):
+        for j in range(n - i - 1)
+            need_swap = (
+                (array[j] > array[j + 1])
+                if ascending
+                else (array[j] < array[j + 1])
+            )
+            if need_swap:
+                array[j], array[j + 1] = array[j + 1], array[j]
+
+# 4.Сортування вставками
+def insertion_sort(array, ascending=True):
+    n = len(array)
+    for i in range(1, n):
+        key = array[i]
+        j = i - 1
+
+        while j >= 0 and (
+            (array[j] > key) if ascending else (array[j] < key)
+        ):
+            array[j + 1] = array[j]
+            j -= 1
+        array[j + 1] = key
+
+
+# 5. Selection Sort (Сортування вибором)
+def selection_sort(array, ascending=True):
+    n = len(array)
+    for i in range(n - 1):
+        target_index = i
+        for j in range(i + 1, n):
+            condition = (
+                (array[j] < array[target_index])
+                if ascending
+                else (array[j] > array[target_index])
+            )
+            if condition:
+                target_index = j
+        array[i], array[target_index] = array[target_index], array[i]
+
+
+#демонстрація
+if __name__ == "__main__":
+    original_array = generate_array(5, 1, 20)
+
+    print("Оригінальний масив:")
+    print_array(original_array)
+
+    # бабл сорт
+    arr1 = original_array.copy() 
+    bubble_sort(arr1, ascending=True) 
+    print("\nBubble Sort (Прямий порядок - True):")
+    print_array(arr1)
+
+    # інсератіон сорт
+    arr2 = original_array.copy()
+    insertion_sort(arr2, ascending=False) 
+    print("\nInsertion Sort (Зворотний порядок - False):")
+    print_array(arr2)
+
+    # слект сорт
+    arr3 = original_array.copy()
+    selection_sort(arr3, ascending=True)
+    print("\nSelection Sort (Прямий порядок - True):")
+    print_array(arr3)
